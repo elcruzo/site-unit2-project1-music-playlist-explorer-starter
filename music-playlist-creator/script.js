@@ -16,8 +16,13 @@
 //     });
 // });
 
+function openModal(festival) {
+    document.getElementById('festivalName').style.display = "block";
+}
 
-
+function closeModal(festival) {
+    document.getElementById('festivalName').style.display = "none";
+}
 
 
 let myPlaylistData = data
@@ -29,10 +34,10 @@ const myPlaylistCards = myPlaylistData['playlists'].map((item) => {
         `
         <div class="card">
             <div class="card-img">
-                <img src="${item['playlist_art']}" alt="" class="card-img">
+                <img src="${item['playlist_art']}" alt="" class="img-card">
             </div>
 
-            <div>
+            <div class="text-section">
                 <h3>${item['playlist_name']}</h3>
                 <p>${item['playlist_creator']}</p>
 
@@ -47,3 +52,24 @@ const myPlaylistCards = myPlaylistData['playlists'].map((item) => {
 }).join('')
 
 playlists.innerHTML = myPlaylistCards
+
+var modal = document.getElementById("festivalModal");
+var span = document.getElementsByClassName("close")[0];
+
+function openModal(festival) {
+   document.getElementById('festivalName').innerText = festival.name;
+   document.getElementById('festivalImage').src = festival.imageUrl;
+   document.getElementById('festivalDates').innerText = `Dates: ${festival.dates}`;
+   document.getElementById('festivalLocation').innerText = `Location: ${festival.location}`;
+   document.getElementById('artistLineup').innerHTML = `<strong>Lineup:</strong> ${festival.lineup.join(', ')}`;
+   modal.style.display = "block";
+}
+
+span.onclick = function() {
+   modal.style.display = "none";
+}
+window.onclick = function(event) {
+   if (event.target == modal) {
+      modal.style.display = "none";
+   }
+}
