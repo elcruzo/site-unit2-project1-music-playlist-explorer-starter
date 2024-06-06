@@ -12,25 +12,42 @@
 </head>
 <body>
     <header id="header-name">
-        <h1 class="header-text">Music Playlist Explorer</h1>
+        <h1>Music Playlist Explorer</h1>
     </header>
 
     <main>
         <div id="card-parent"></div>
-
-        <div id="playlistModal" class="modal">
-            <div class="modal-content">
-               <span class="close">&times;</span>
-               <img id="playlistImage" src="" alt="Playlist Image" class="modal-img">
-               <h1 id="playlistName"></h1>
-               <p id="playlistCreator"></p>
-               <div id="songList"></div>
-            </div>
-         </div>
     </main>
 
-    <footer id="footer-name">
-    </footer>
+    <div id="modal-overlay" class="modal">
+
+        <div class="modal-content">
+
+           <span class="close">&times;</span>
+           <div class="modal-playlist-info">
+                <img src="./assets/img/playlist.png" alt="Playlist Cover img" class="modal-playlist-img">
+                <div class="modal-playlist-info-txt">
+                    <h1>Playlist Title</h1>
+                    <h2>Creator Name</h2>
+                </div>
+           </div>
+
+           <div class="modal-each-song">
+                <img src="./assets/img/song.png" alt="Each Song" class="modal-each-song-img">
+                <div class="modal-each-song-desc">
+                    <h3>Song Title</h3>
+                    <p><em>Artist Name</em></p>
+                    <p>Album Name</p>
+                </div>
+                <div class="modal-song-time"><h3>0:00</h3></div>
+           </div>
+
+        </div>
+
+    </div>
+
+    <!-- <footer id="footer-name">
+    </footer> -->
     <script src="data/data.js"></script>
     <script src="script.js"></script>
 </body>
