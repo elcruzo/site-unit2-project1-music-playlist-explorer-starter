@@ -28,7 +28,6 @@ body {
 }
 
 .card {
-    flex-basis: 25%;
     border: 1px solid rgb(159, 156, 156);
     /* margin: 2px; */
     border-radius: 30px;
@@ -43,9 +42,9 @@ body {
     align-items: center;
 }
 
-.card-img {
+/* .card-img {
     min-width: 70px;
-}
+} */
 
 .img-card {
     width: 100%;
@@ -71,7 +70,7 @@ body {
 }
 
 .modal {
-    display: block;
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -80,23 +79,30 @@ body {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
- }
- .modal-content {
+}
+
+.modal-content {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
- }
- .close {
+}
+
+.modal-img {
+    max-width: 100%;
+}
+
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
- }
- .close:hover,
- .close:focus {
+}
+
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
- }
+}
