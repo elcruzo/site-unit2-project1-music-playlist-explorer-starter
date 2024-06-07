@@ -17,7 +17,8 @@ body {
     text-align: center;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 2em 0 2em;
 }
 
 #card-parent {
@@ -53,15 +54,15 @@ body {
     padding: 10px;
 }
 
-#likeButton {
+.likeButton {
     cursor: pointer;
 }
 
-#likeButton.liked {
+.likeButton.liked {
     color: #e74c3c;
 }
 
-#likeCount {
+.likeCount {
     font-size: 18px;
 }
 
@@ -128,4 +129,24 @@ body {
 }
 .modal-song-time{
     margin-left: 100px;
+}
+
+#search-input{
+    width: 250px;
+    height: 25px;
+}
+
+#shuffle-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#shuffle-button:hover {
+    background-color: #45a049;
 }

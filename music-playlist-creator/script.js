@@ -1,40 +1,68 @@
-let myPlaylistData = data
-let playlists = document.getElementById("card-parent")
-playlists.innerHTML = "";
+let myPlaylistData = data;
+let playlists = document.getElementById("card-parent");
+let searchInput = document.getElementById("search-input");
 
-myPlaylistData["playlists"].forEach((item) => {
-    let playlistElement = document.createElement("li")
+function renderPlaylists(filterText = '') {
+  playlists.innerHTML = "";
+  myPlaylistData["playlists"]
+    .filter(item => item['playlist_name'].toLowerCase().includes(filterText.toLowerCase()) || item['playlist_creator'].toLowerCase().includes(filterText.toLowerCase()))
+    .forEach((item) => {
+      let playlistElement = document.createElement("li");
+      playlistElement.innerHTML =  `
+        <div>
+            <img src="${item['playlist_art']}" alt="" class="img-card">
+        </div>
 
-    playlistElement.innerHTML =  `
-                <div>
-                    <img src="${item['playlist_art']}" alt="" class="img-card">
-                </div>
+        <div class="text-section">
+            <h3>${item['playlist_name']}</h3>
+            <p>${item['playlist_creator']}</p>
 
-                <div class="text-section">
-                    <h3>${item['playlist_name']}</h3>
-                    <p>${item['playlist_creator']}</p>
+            <div class="like-section">
+                <i class="fa-regular fa-heart likeButton"></i>
+                <span class="likeCount">${item['likeCount']}</span>
+            </div>
+        </div>
+      `;
+      playlistElement.classList.add("card");
+      playlists.appendChild(playlistElement);
 
-                    <div class="like-section">
-                        <i id="likeButton" class="fa-regular fa-heart"></i>
-                        <span id="likeButton">${item['likeCount']}</span>
-                    </div>
-                </div>
-    `
-    playlistElement.classList.add("card");
-    playlists.appendChild(playlistElement);
-
-    playlistElement.addEventListener('click', () => {
-        loadModalOverlay(item);
-        modal.style.display = 'block';
+      playlistElement.addEventListener('click', (event) => {
+        if (event.target.classList.contains('likeButton')) {
+          toggleLike(event.target);
+        } else {
+          loadModalOverlay(item);
+          modal.style.display = 'block';
+        }
+      });
     });
-});
+}
+
+function toggleLike(button) {
+  const likeCountSpan = button.nextElementSibling;
+  let likeCount = parseInt(likeCountSpan.textContent);
+
+  if (button.classList.contains('liked')) {
+    button.classList.remove('liked');
+    button.classList.add('fa-regular');
+    button.classList.remove('fa-solid');
+    likeCount = 0;
+  } else {
+    button.classList.add('liked');
+    button.classList.add('fa-solid');
+    button.classList.remove('fa-regular');
+    likeCount = 1;
+  }
+
+  likeCountSpan.textContent = likeCount;
+}
+
+searchInput.addEventListener('input', (event) => {
+  renderPlaylists(event.target.value);
+})
+
+renderPlaylists();
 
 const modal = document.getElementById('modal-overlay');
-// const closeButton = document.querySelector('.close');
-
-// closeButton.addEventListener('click', () => {
-//   modal.style.display = 'none';
-// });
 
 window.addEventListener('click', (event) => {
   if (event.target === modal) {
@@ -54,6 +82,7 @@ function loadModalOverlay(playlist) {
         <h2>${playlist.playlist_creator}</h2>
       </div>
     </div>
+    <button id="shuffle-button">Shuffle <i class="fa-solid fa-shuffle"></i></button>
   `;
 
   playlist.songs.forEach(song => {
@@ -75,4 +104,18 @@ function loadModalOverlay(playlist) {
   closeButton.addEventListener('click', () => {
     modal.style.display = 'none';
   });
+
+  const shuffleButton = document.getElementById('shuffle-button');
+  shuffleButton.addEventListener('click', () => {
+    shuffleSongs(playlist);
+  });
+}
+
+function shuffleSongs(playlist) {
+  for (let i = playlist.songs.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [playlist.songs[i], playlist.songs[j]] = [playlist.songs[j], playlist.songs[i]];
+  }
+
+  loadModalOverlay(playlist);
 }
