@@ -20,7 +20,7 @@ function renderPlaylists(filterText = '', sortBy = 'name') {
     filteredPlaylists.forEach((item) => {
       let playlistElement = document.createElement("li");
       playlistElement.innerHTML =  `
-        <div>
+        <div class="card-img">
             <img src="${item['playlist_art']}" alt="" class="img-card">
         </div>
 
@@ -152,33 +152,33 @@ function openAddPlaylistModal() {
 
   modalContent.innerHTML = `
   <span class="close">&times;</span>
-    <div id="add-playlist-form">
-        <h2>Add New </h2>
-        <form id="new-playlist-form">
-            <label for="playlist-name">Playlist Name:</label>
-            <input type="text" id="playlist-name" name="playlist-name" required>
-            <label for="playlist-creator">Playlist Creator:</label>
-            <input type="text" name="playlist-creator" id="playlist-creator" required>
-            <label for="playlist-art">Playlist Art URL:</label>
-            <input type="text" name="playlist-art" id="playlist-art">
+  <div id="add-playlist-form">
+      <h2 class="new-playlist-header">Add New Playlist </h2>
+      <form id="new-playlist-form">
+          <label for="playlist-name">Playlist Name:</label>
+          <input type="text" id="playlist-name" name="playlist-name" required>
+          <label for="playlist-creator">Playlist Creator:</label>
+          <input type="text" name="playlist-creator" id="playlist-creator" required>
+          <label for="playlist-art">Playlist Art URL:</label>
+          <input type="text" name="playlist-art" id="playlist-art">
 
-            <div id="songs-container">
-                <h3>Songs</h3>
-                <div class="song">
-                    <label for="song-title-0">Title:</label>
-                    <input type="text" id="song-title-0" name="song-title-0" required>
-                    <label for="song-artist-0">Artist:</label>
-                    <input type="text" id="song-artist-0" name="song-artist-0" required>
-                    <label for="song-duration-0">Duration:</label>
-                    <input type="text" id="song-duration-0" name="song-duration-0" required>
-                    <label for="song-cover-art-0">Cover Art URL:</label>
-                    <input type="text" id="song-cover-art-0" name="song-cover-art-0" required>
-                </div>
-            </div>
-            <button type="button" id="add-song-button">Add Another Song</button>
-            <button type="submit">Create Playlist</button>
-        </form>
-    </div>
+          <div id="songs-container">
+              <h3>Songs</h3>
+              <div class="song">
+                  <label for="song-title-0">Title:</label>
+                  <input type="text" id="song-title-0" name="song-title-0" required>
+                  <label for="song-artist-0">Artist:</label>
+                  <input type="text" id="song-artist-0" name="song-artist-0" required>
+                  <label for="song-duration-0">Duration:</label>
+                  <input type="text" id="song-duration-0" name="song-duration-0" required>
+                  <label for="song-cover-art-0">Cover Art URL:</label>
+                  <input type="text" id="song-cover-art-0" name="song-cover-art-0" required>
+              </div>
+          </div>
+          <button type="button" id="add-song-button">Add Another Song</button>
+          <button type="submit">Create Playlist</button>
+      </form>
+  </div>
   `;
 
   modal.style.display = 'block';
