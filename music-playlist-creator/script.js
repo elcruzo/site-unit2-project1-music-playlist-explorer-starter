@@ -33,7 +33,7 @@ function renderPlaylists(filterText = '', sortBy = 'name') {
                 <i class="fa-regular fa-heart likeButton"></i>
                 <span class="likeCount">${item['likeCount']}</span>
               </div>
-              <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid fa-trash"></i>
             </div>
         </div>
       `;
