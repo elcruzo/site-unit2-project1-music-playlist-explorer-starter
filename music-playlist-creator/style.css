@@ -271,7 +271,7 @@ body {
     float: right;
 } */
 
-add.card {
+.add-card {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -279,9 +279,12 @@ add.card {
     cursor: pointer;
     font-size: 48px;
     color: #555;
+    height: #555;
+    border: 1px solid rgb(159, 156, 156);
+    border-radius: 30px;
 }
 
-add-card:hover {
+.add-card:hover {
     background-color: #ccc;
 }
 

@@ -4,12 +4,7 @@ let searchInput = document.getElementById("search-input");
 let sortOptions = document.getElementById("sort-options");
 
 function renderPlaylists(filterText = '', sortBy = 'name') {
-  playlists.innerHTML =
-  `
-  <div class="card add-card">
-    <i class="fa fa-plus plus-icon"></i>
-  </div>
-  `;
+  playlists.innerHTML = '';
 
   let filteredPlaylists = myPlaylistData["playlists"]
     .filter(item => item['playlist_name'].toLowerCase().includes(filterText.toLowerCase()) || item['playlist_creator'].toLowerCase().includes(filterText.toLowerCase()))
@@ -52,8 +47,13 @@ function renderPlaylists(filterText = '', sortBy = 'name') {
       });
     });
 
-    document.querySelector(".add-card").addEventListener('click', () => {
-      modal.style.display = 'block';
+    const addCard = document.createElement("div");
+    addCard.classList.add("card", "add-card");
+    addCard.innerHTML = '<i class="fa fa-plus plus-icon></i>';
+    playlists.appendChild(addCard);
+
+    addCard.addEventListener('click', () => {
+      openAddPlaylistModal();
     });
 }
 
@@ -147,66 +147,108 @@ function shuffleSongs(playlist) {
   loadModalOverlay(playlist);
 }
 
-let songCount = 1;
+function openAddPlaylistModal() {
+  const modalContent = document.querySelector('.modal-content');
 
-// Function to add another song input section
-function addSongInput() {
-  const songsContainer = document.getElementById("songs-container");
+  modalContent.innerHTML = `
+  <span class="close">&times;</span>
+    <div id="add-playlist-form">
+        <h2>Add New </h2>
+        <form id="new-playlist-form">
+            <label for="playlist-name">Playlist Name:</label>
+            <input type="text" id="playlist-name" name="playlist-name" required>
+            <label for="playlist-creator">Playlist Creator:</label>
+            <input type="text" name="playlist-creator" id="playlist-creator" required>
+            <label for="playlist-art">Playlist Art URL:</label>
+            <input type="text" name="playlist-art" id="playlist-art">
 
-  const newSong = document.createElement("div");
-  newSong.classList.add("song");
-
-  newSong.innerHTML = `
-    <label for="song-title-${songCount}">Title:</label>
-    <input type="text" id="song-title-${songCount}" name="song-title-${songCount}" required>
-    <label for="song-artist-${songCount}">Artist:</label>
-    <input type="text" id="song-artist-${songCount}" name="song-artist-${songCount}" required>
-    <label for="song-duration-${songCount}">Duration:</label>
-    <input type="text" id="song-duration-${songCount}" name="song-duration-${songCount}" required>
-    <label for="song-cover-art-${songCount}">Cover Art URL:</label>
-    <input type="text" id="song-cover-art-${songCount}" name="song-cover-art-${songCount}" required>
+            <div id="songs-container">
+                <h3>Songs</h3>
+                <div class="song">
+                    <label for="song-title-0">Title:</label>
+                    <input type="text" id="song-title-0" name="song-title-0" required>
+                    <label for="song-artist-0">Artist:</label>
+                    <input type="text" id="song-artist-0" name="song-artist-0" required>
+                    <label for="song-duration-0">Duration:</label>
+                    <input type="text" id="song-duration-0" name="song-duration-0" required>
+                    <label for="song-cover-art-0">Cover Art URL:</label>
+                    <input type="text" id="song-cover-art-0" name="song-cover-art-0" required>
+                </div>
+            </div>
+            <button type="button" id="add-song-button">Add Another Song</button>
+            <button type="submit">Create Playlist</button>
+        </form>
+    </div>
   `;
 
-  songsContainer.appendChild(newSong);
-  songCount++;
-}
+  modal.style.display = 'block';
 
-// Add event listener for adding another song
-document.getElementById("add-song-button").addEventListener("click", addSongInput);
+  const closeButton = document.querySelector('.close');
+  closeButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
 
-// Handle form submission
-document.getElementById("new-playlist-form").addEventListener("submit", (event) => {
-  event.preventDefault();
+  let songCount = 1;
 
-  const playlistName = document.getElementById("playlist-name").value;
-  const playlistCreator = document.getElementById("playlist-creator").value;
-  const playlistArt = document.getElementById("playlist-art").value;
+  // Function to add another song input section
+  function addSongInput() {
+    const songsContainer = document.getElementById("songs-container");
 
-  const songs = [];
-  for (let i = 0; i < songCount; i++) {
-    const title = document.getElementById(`song-title-${i}`).value;
-    const artist = document.getElementById(`song-artist-${i}`).value;
-    const duration = document.getElementById(`song-duration-${i}`).value;
-    const coverArt = document.getElementById(`song-cover-art-${i}`).value;
+    const newSong = document.createElement("div");
+    newSong.classList.add("song");
 
-    songs.push({
-      title,
-      artist,
-      duration,
-      cover_art: coverArt
-    });
+    newSong.innerHTML = `
+      <label for="song-title-${songCount}">Title:</label>
+      <input type="text" id="song-title-${songCount}" name="song-title-${songCount}" required>
+      <label for="song-artist-${songCount}">Artist:</label>
+      <input type="text" id="song-artist-${songCount}" name="song-artist-${songCount}" required>
+      <label for="song-duration-${songCount}">Duration:</label>
+      <input type="text" id="song-duration-${songCount}" name="song-duration-${songCount}" required>
+      <label for="song-cover-art-${songCount}">Cover Art URL:</label>
+      <input type="text" id="song-cover-art-${songCount}" name="song-cover-art-${songCount}" required>
+    `;
+
+    songsContainer.appendChild(newSong);
+    songCount++;
   }
 
-  const newPlaylist = {
-    playlist_name: playlistName,
-    playlist_creator: playlistCreator,
-    playlist_art: playlistArt,
-    songs: songs,
-    likeCount: 0,
-    dateAdded: new Date().toISOString()
-  };
+  // Add event listener for adding another song
+  document.getElementById("add-song-button").addEventListener("click", addSongInput);
 
-  myPlaylistData["playlists"].push(newPlaylist);
-  renderPlaylists(searchInput.value, sortOptions.value);
-  modal.style.display = 'none';
-});
+  // Handle form submission
+  document.getElementById("new-playlist-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const playlistName = document.getElementById("playlist-name").value;
+    const playlistCreator = document.getElementById("playlist-creator").value;
+    const playlistArt = document.getElementById("playlist-art").value;
+
+    const songs = [];
+    for (let i = 0; i < songCount; i++) {
+      const title = document.getElementById(`song-title-${i}`).value;
+      const artist = document.getElementById(`song-artist-${i}`).value;
+      const duration = document.getElementById(`song-duration-${i}`).value;
+      const coverArt = document.getElementById(`song-cover-art-${i}`).value;
+
+      songs.push({
+        title,
+        artist,
+        duration,
+        cover_art: coverArt
+      });
+    }
+
+    const newPlaylist = {
+      playlist_name: playlistName,
+      playlist_creator: playlistCreator,
+      playlist_art: playlistArt,
+      songs: songs,
+      likeCount: 0,
+      dateAdded: new Date().toISOString()
+    };
+
+    myPlaylistData["playlists"].push(newPlaylist);
+    renderPlaylists(searchInput.value, sortOptions.value);
+    modal.style.display = 'none';
+  });
+}
