@@ -15,14 +15,50 @@
         <h1>Music Playlist Explorer</h1>
         <a href="featured.html">Link to featured</a>
         <input type="text" id="search-input" placeholder="Search Playlists...">
+        <select id="sort-options">
+            <option value="name">Sort by Name</option>
+            <option value="likes">Sort by Likes</option>
+            <option value="date">Sort by Date Added</option>
+        </select>
     </header>
 
     <main>
         <div id="card-parent"></div>
+        <div class="card add-card">
+            <i class="fa fa-plus plus-icon"></i>
+        </div>
     </main>
 
     <div id="modal-overlay" class="modal">
         <div class="modal-content"></div>
+    </div>
+
+    <div id="add-playlist-form">
+        <h2>Add New Playlist</h2>
+        <form id="new-playlist-form">
+            <label for="playlist-name">Playlist Name:</label>
+            <input type="text" id="playlist-name" name="playlist-name" required>
+            <label for="playlist-creator">Playlist Creator:</label>
+            <input type="text" name="playlist-creator" id="playlist-creator" required>
+            <label for="playlist-art">Playlist Art URL:</label>
+            <input type="text" name="playlist-art" id="playlist-art">
+
+            <div id="songs-container">
+                <h3>Songs</h3>
+                <div class="song">
+                    <label for="song-title-0">Title:</label>
+                    <input type="text" id="song-title-0" name="song-title-0" required>
+                    <label for="song-artist-0">Artist:</label>
+                    <input type="text" id="song-artist-0" name="song-artist-0" required>
+                    <label for="song-duration-0">Duration:</label>
+                    <input type="text" id="song-duration-0" name="song-duration-0" required>
+                    <label for="song-cover-art-0">Cover Art URL:</label>
+                    <input type="text" id="song-cover-art-0" name="song-cover-art-0" required>
+                </div>
+            </div>
+            <button type="button" id="add-song-button">Add Another Song</button>
+            <button type="submit">Create Playlist</button>
+        </form>
     </div>
 
     <!-- <footer id="footer-name">

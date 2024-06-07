@@ -122,14 +122,27 @@ body {
     border-radius: 5px;
 }
 
+.modal-song-parent-div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
 .modal-each-song-img{
     height: 100px;
     width: 100px;
     margin: 10px;
 }
-.modal-song-time{
-    margin-left: 100px;
+
+.modal-each-song-desc {
+    flex: 1;
 }
+
+.modal-song-time {
+    margin-left: auto;
+    padding: 0 10px;
+}
+
 
 #search-input{
     width: 250px;
@@ -200,11 +213,128 @@ body {
     border-radius: 10px;
 }
 
-.modal-each-song-desc {
-    flex: 1;
+#add-playlist-form {
+    margin: 20px;
+    padding: 20px;
+    background-color: lightgrey;
+    border-radius: 10px;
 }
 
-.modal-song-time {
-    margin-left: auto;
-    padding: 0 10px;
+#add-playlist-form h2 {
+    margin-bottom: 20px;
+}
+
+#add-playlist-form label {
+    display: block;
+    margin-top: 10px;
+}
+
+#add-playlist-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#add-song-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#add-song-button:hover {
+    background-color: #45a049;
+}
+
+#new-playlist-form button[type="submit"] {
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#new-playlist-form button[type="submit"]:hover {
+    background-color: #007B9A;
+}
+
+/* #sort-options {
+    float: right;
+} */
+
+add.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #add;
+    cursor: pointer;
+    font-size: 48px;
+    color: #555;
+}
+
+add-card:hover {
+    background-color: #ccc;
+}
+
+.plus-icon {
+    font-size: 48px;
+}
+
+#add-playlist-form {
+    margin: 20px;
+    padding: 20px;
+    background-color: lightgrey;
+    border-radius: 10px;
+}
+
+#add-playlist-form label {
+    display: block;
+    margin-top: 10px;
+}
+
+#add-playlist-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#add-song-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#add-song-button:hover {
+    background-color: #45a049;
+}
+
+#new-playlist-form button[type="submit"] {
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#new-playlist-form button[type="submit"]:hover {
+    background-color: #007B9A;
 }

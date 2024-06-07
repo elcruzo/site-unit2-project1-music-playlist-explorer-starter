@@ -1,12 +1,28 @@
 let myPlaylistData = data;
 let playlists = document.getElementById("card-parent");
 let searchInput = document.getElementById("search-input");
+let sortOptions = document.getElementById("sort-options");
 
-function renderPlaylists(filterText = '') {
-  playlists.innerHTML = "";
-  myPlaylistData["playlists"]
+function renderPlaylists(filterText = '', sortBy = 'name') {
+  playlists.innerHTML =
+  `
+  <div class="card add-card">
+    <i class="fa fa-plus plus-icon"></i>
+  </div>
+  `;
+
+  let filteredPlaylists = myPlaylistData["playlists"]
     .filter(item => item['playlist_name'].toLowerCase().includes(filterText.toLowerCase()) || item['playlist_creator'].toLowerCase().includes(filterText.toLowerCase()))
-    .forEach((item) => {
+
+    if (sortBy === 'name') {
+      filteredPlaylists.sort((a, b) => a['playlist_name'].localeCompare(b['playlist_name']));
+    } else if (sortBy === 'likes') {
+      filteredPlaylists.sort((a, b) => a['likeCount'] - b['likeCount']);
+    } else if (sortBy === 'date') {
+      filteredPlaylists.sort((a, b) => new Date(b['dateAdded']) - new Date(a['dateAdded']));
+    }
+
+    filteredPlaylists.forEach((item) => {
       let playlistElement = document.createElement("li");
       playlistElement.innerHTML =  `
         <div>
@@ -35,6 +51,10 @@ function renderPlaylists(filterText = '') {
         }
       });
     });
+
+    document.querySelector(".add-card").addEventListener('click', () => {
+      modal.style.display = 'block';
+    });
 }
 
 function toggleLike(button) {
@@ -57,7 +77,11 @@ function toggleLike(button) {
 }
 
 searchInput.addEventListener('input', (event) => {
-  renderPlaylists(event.target.value);
+  renderPlaylists(event.target.value, sortOptions.value);
+})
+
+sortOptions.addEventListener('change', (event) => {
+  renderPlaylists(searchInput.value, event.target.value);
 })
 
 renderPlaylists();
@@ -92,11 +116,13 @@ function loadModalOverlay(playlist) {
 
     songElement.innerHTML = `
       <img src="${song.cover_art}" alt="Each Song" class="modal-each-song-img">
-      <div class="modal-each-song-desc">
-        <h3>${song.title}</h3>
-        <p><em>${song.album}</p>
+      <div class="modal-song-parent-div">
+        <div class="modal-each-song-desc">
+          <h3>${song.title}</h3>
+          <p><em>${song.album}</p>
+        </div>
+        <div class="modal-song-time"><h3>${song.duration}</h3></div>
       </div>
-      <div class="modal-song-time"><h3>${song.duration}</h3></div>
     `;
     modalContent.appendChild(songElement);
   });
@@ -120,3 +146,67 @@ function shuffleSongs(playlist) {
 
   loadModalOverlay(playlist);
 }
+
+let songCount = 1;
+
+// Function to add another song input section
+function addSongInput() {
+  const songsContainer = document.getElementById("songs-container");
+
+  const newSong = document.createElement("div");
+  newSong.classList.add("song");
+
+  newSong.innerHTML = `
+    <label for="song-title-${songCount}">Title:</label>
+    <input type="text" id="song-title-${songCount}" name="song-title-${songCount}" required>
+    <label for="song-artist-${songCount}">Artist:</label>
+    <input type="text" id="song-artist-${songCount}" name="song-artist-${songCount}" required>
+    <label for="song-duration-${songCount}">Duration:</label>
+    <input type="text" id="song-duration-${songCount}" name="song-duration-${songCount}" required>
+    <label for="song-cover-art-${songCount}">Cover Art URL:</label>
+    <input type="text" id="song-cover-art-${songCount}" name="song-cover-art-${songCount}" required>
+  `;
+
+  songsContainer.appendChild(newSong);
+  songCount++;
+}
+
+// Add event listener for adding another song
+document.getElementById("add-song-button").addEventListener("click", addSongInput);
+
+// Handle form submission
+document.getElementById("new-playlist-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const playlistName = document.getElementById("playlist-name").value;
+  const playlistCreator = document.getElementById("playlist-creator").value;
+  const playlistArt = document.getElementById("playlist-art").value;
+
+  const songs = [];
+  for (let i = 0; i < songCount; i++) {
+    const title = document.getElementById(`song-title-${i}`).value;
+    const artist = document.getElementById(`song-artist-${i}`).value;
+    const duration = document.getElementById(`song-duration-${i}`).value;
+    const coverArt = document.getElementById(`song-cover-art-${i}`).value;
+
+    songs.push({
+      title,
+      artist,
+      duration,
+      cover_art: coverArt
+    });
+  }
+
+  const newPlaylist = {
+    playlist_name: playlistName,
+    playlist_creator: playlistCreator,
+    playlist_art: playlistArt,
+    songs: songs,
+    likeCount: 0,
+    dateAdded: new Date().toISOString()
+  };
+
+  myPlaylistData["playlists"].push(newPlaylist);
+  renderPlaylists(searchInput.value, sortOptions.value);
+  modal.style.display = 'none';
+});
