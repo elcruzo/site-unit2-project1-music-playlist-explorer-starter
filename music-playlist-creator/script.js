@@ -80,9 +80,10 @@ function loadModalOverlay(playlist) {
       <div class="modal-playlist-info-txt">
         <h1>${playlist.playlist_name}</h1>
         <h2>${playlist.playlist_creator}</h2>
+        <button id="shuffle-button">Shuffle <i class="fa-solid fa-shuffle"></i></button>
       </div>
     </div>
-    <button id="shuffle-button">Shuffle <i class="fa-solid fa-shuffle"></i></button>
+
   `;
 
   playlist.songs.forEach(song => {

@@ -150,3 +150,30 @@ body {
 #shuffle-button:hover {
     background-color: #45a049;
 }
+
+.featured-title {
+    text-align: center;
+}
+
+.featured-main {
+    display: flex;
+    margin: 16px;
+    gap: 2em;
+}
+
+.featured-main2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.featured-left {
+    align-items: center;
+}
+
+.featured-img-left {
+    max-width: 30vw;
+}
+
+.featured-right {
+    width: 100%;
+}
