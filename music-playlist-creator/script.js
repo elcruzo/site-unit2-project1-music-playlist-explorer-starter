@@ -120,3 +120,36 @@ function shuffleSongs(playlist) {
 
   loadModalOverlay(playlist);
 }
+
+// function getRandomPlaylist() {
+//   const playlists = data.playlists;
+//   const randomIndex = Math.floor(Math.random() * playlists.length);
+//   return playlists[randomIndex];
+// }
+
+// function displayFeaturedPlaylist() {
+//   const playlist = getRandomPlaylist()
+//   const featuredImg = document.getElementById('featured-img')
+//   const featuredName = document.getElementById('featured-name')
+//   const featuredSongs = document.getElementById('featured-songs')
+
+//   featuredImg.src = playlist.playlist_art;
+//   featuredName.textContent = playlist.playlist_name;
+//   featuredSongs.innerHTML = '';
+
+//   playlist.songs.forEach(song => {
+//     const songItem = document.createElement('li');
+//     songItem.innerHTML = `
+//       <img src="${song.cover_art} alt="${song.title}" class="modal-each-song-img">
+//       <div class="modal-each-song-desc">
+//         <h3>${song.title}</h3>
+//         <p><em>${song.album}</em></p>
+//       </div>
+//       <div class="modal-song-time"><h3>${song.duration}</h3></div>
+//     `;
+//     songItem.classList.add('modal-each-song');
+//     featuredSongs.appendChild(songItem);
+//   });
+// }
+
+// document.addEventListener('DOMContentLoaded', displayFeaturedPlaylist);
