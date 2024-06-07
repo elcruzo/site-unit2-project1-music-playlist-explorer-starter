@@ -21,6 +21,22 @@ body {
     padding: 0 2em 0 2em;
 }
 
+.logo {
+    text-decoration: none;
+}
+
+.fa-trash{
+    color: #ccc;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0 0 0 150px;
+    transition: all 0.5s ease;
+}
+
+.fa-trash:hover{
+    color: #ab2a1b;
+}
+
 #card-parent {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -72,6 +88,8 @@ body {
 
 .like-section {
     margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .likeButton {

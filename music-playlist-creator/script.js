@@ -29,8 +29,11 @@ function renderPlaylists(filterText = '', sortBy = 'name') {
             <p>${item['playlist_creator']}</p>
 
             <div class="like-section">
+              <div>
                 <i class="fa-regular fa-heart likeButton"></i>
                 <span class="likeCount">${item['likeCount']}</span>
+              </div>
+              <i class="fa-solid fa-trash"></i>
             </div>
         </div>
       `;
@@ -44,6 +47,12 @@ function renderPlaylists(filterText = '', sortBy = 'name') {
           loadModalOverlay(item);
           modal.style.display = 'block';
         }
+      });
+
+      const trashButton = playlistElement.querySelector(".fa-trash");
+            trashButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                playlistElement.remove();
       });
     });
 
