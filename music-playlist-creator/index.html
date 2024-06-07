@@ -12,15 +12,18 @@
 </head>
 <body>
     <header id="header-name">
-        <h1>Music Playlist Explorer</h1>
-        <a href="featured.html">Link to featured</a>
+        <h1><a href="index.html">Music Playlist Explorer</a></h1>
+        <a href="featured.html"><i class="fa-solid fa-star"></i></a>
         <input type="text" id="search-input" placeholder="Search Playlists...">
+    </header>
+
+    <div class="options-container">
         <select id="sort-options">
             <option value="name">Sort by Name</option>
             <option value="likes">Sort by Likes</option>
             <option value="date">Sort by Date Added</option>
         </select>
-    </header>
+    </div>
 
     <main>
         <div id="card-parent"></div>

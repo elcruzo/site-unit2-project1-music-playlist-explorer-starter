@@ -25,7 +25,13 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1.5em;
-    margin: 1.5em 1.5em 0 1.5em;
+    margin: 3.5em 1.5em 0 1.5em;
+}
+
+.options-container {
+    float: right;
+    padding-right: 30px;
+    margin-top: 1.5em;
 }
 
 .card {
@@ -170,6 +176,9 @@ body {
     padding: 0 10px;
 }
 
+.fa-star {
+    font-size: 25px;
+}
 
 #search-input{
     width: 250px;
@@ -310,9 +319,9 @@ body {
     background-color: #007B9A;
 }
 
-/* #sort-options {
-    float: right;
-} */
+#sort-options {
+    height: 25px;
+}
 
 .add-card {
     display: flex;
