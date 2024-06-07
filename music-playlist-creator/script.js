@@ -30,11 +30,11 @@ myPlaylistData["playlists"].forEach((item) => {
 });
 
 const modal = document.getElementById('modal-overlay');
-const closeButton = document.querySelector('.close');
+// const closeButton = document.querySelector('.close');
 
-closeButton.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
+// closeButton.addEventListener('click', () => {
+//   modal.style.display = 'none';
+// });
 
 window.addEventListener('click', (event) => {
   if (event.target === modal) {
@@ -69,5 +69,10 @@ function loadModalOverlay(playlist) {
       <div class="modal-song-time"><h3>${song.duration}</h3></div>
     `;
     modalContent.appendChild(songElement);
+  });
+
+  const closeButton = document.querySelector('.close');
+  closeButton.addEventListener('click', () => {
+    modal.style.display = 'none';
   });
 }
