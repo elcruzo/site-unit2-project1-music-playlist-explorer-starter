@@ -201,6 +201,9 @@ body {
     display: flex;
     margin: 16px;
     gap: 2em;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 2px 2px 5px 0px grey;
 }
 
 .featured-main2 {
@@ -211,17 +214,28 @@ body {
 .featured-left {
     flex: 1;
     align-items: center;
+    margin-left: 50px;
+}
+
+.featured-text-left {
+    flex: 1;
+    align-items: top;
+    display: flex;
 }
 
 .featured-img-left {
     max-width: 100%;
     border-radius: 20px;
     margin-bottom: 20px;
+    box-shadow: 2px 2px 5px 0px rgb(91, 90, 90);
+}
+
+#featured-name, #featured-creator {
+    padding: 20px 0px 0px 20px;
 }
 
 .featured-right {
     flex: 2;
-    padding: 20px;
 }
 
 .featured-right ul {
@@ -396,6 +410,14 @@ body {
     align-items: center;
     justify-content: space-between;
 }
+.modal-each-song-desc {
+    flex: 1;
+}
+
+/* .modal-each-song-desc-feat {
+    flex: 1;
+    display: flex;
+} */
 
 .featured-footer{
     background-color: gray;
