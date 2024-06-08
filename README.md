@@ -50,7 +50,14 @@ Deployed Application (optional): [Music Playlist Explorer Deployed Site]()
 
 ### Walkthrough Video
 
-https://www.loom.com/share/c6ee414882e7497b83c0f77dfa452ddf?sid=99828ca1-a333-49ff-977d-23e93779a290
+<div>
+    <a href="https://www.loom.com/share/c6ee414882e7497b83c0f77dfa452ddf">
+      <p>Music Playlist Explorer - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/c6ee414882e7497b83c0f77dfa452ddf">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/c6ee414882e7497b83c0f77dfa452ddf-with-play.gif">
+    </a>
+</div>
 
 ### Reflection
 
