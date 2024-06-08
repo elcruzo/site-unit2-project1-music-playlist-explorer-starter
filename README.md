@@ -72,4 +72,4 @@ My demo worked as I planned. I pulled an all-nighter yesterday and went to bed a
 
 ### Shout out
 
-Big shoutout to Erika and Paige for the concise but striking crash courses. Though it was short, they hit the nail on the head. Special shoutout to Sammy for helping debug my code! Big shoutout to my manager, Ms. Andrea, for the check-in to know how far I was going with my code.
+Big shoutout to Erika and Paige for the concise but striking crash courses. Though it was short, they hit the nail on the head. Special shoutout to Sammy for helping debug my code! Big shoutout to my manager, Ms. Andrea, for the perfomance check-in.
